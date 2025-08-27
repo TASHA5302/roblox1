@@ -1,0 +1,950 @@
+local Gui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local AgreeButton = Instance.new("TextButton")
+local AgreeUICorner = Instance.new("UICorner")
+local PhotoLabel = Instance.new("ImageLabel")
+local CloseButton = Instance.new("TextButton")
+local CloseUICorner = Instance.new("UICorner")
+local ScrollingFrame = Instance.new("ScrollingFrame")
+local TextLabel = Instance.new("TextLabel")
+local TextBox = Instance.new("TextBox")
+
+-- 设置主GUI
+Gui.Name = "TaShaScriptUI"
+Gui.Parent = game.CoreGui
+Gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+Gui.ResetOnSpawn = false
+
+-- 主框架
+Frame.Parent = Gui
+Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.15, 0, 0.075, 0)
+Frame.Size = UDim2.new(0.7, 0, 0.8, 0)
+Frame.ClipsDescendants = true
+
+-- 圆角
+UICorner.Parent = Frame
+UICorner.CornerRadius = UDim.new(0, 12)
+
+-- 标题栏
+local TitleBar = Instance.new("Frame")
+TitleBar.Name = "TitleBar"
+TitleBar.Parent = Frame
+TitleBar.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
+TitleBar.BorderSizePixel = 0
+TitleBar.Size = UDim2.new(1, 0, 0.08, 0)
+
+local TitleCorner = Instance.new("UICorner")
+TitleCorner.Parent = TitleBar
+TitleCorner.CornerRadius = UDim.new(0, 12)
+
+local TitleLabel = Instance.new("TextLabel")
+TitleLabel.Parent = TitleBar
+TitleLabel.BackgroundTransparency = 1
+TitleLabel.Position = UDim2.new(0.02, 0, 0, 0)
+TitleLabel.Size = UDim2.new(0.5, 0, 1, 0)
+TitleLabel.Font = Enum.Font.GothamBold
+TitleLabel.Text = "闼鲨脚本 v2.0"
+TitleLabel.TextColor3 = Color3.fromRGB(220, 220, 220)
+TitleLabel.TextSize = 18
+TitleLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+-- 图片标签 - 已更新为指定图片
+PhotoLabel.Parent = Frame
+PhotoLabel.Image = "rbxassetid://1747662434324"
+PhotoLabel.ImageTransparency = 0
+PhotoLabel.Position = UDim2.new(0.027, 0, 0.1, 0)
+PhotoLabel.Size = UDim2.new(0.47, 0, 0.75, 0)
+PhotoLabel.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+PhotoLabel.BorderSizePixel = 0
+PhotoLabel.ScaleType = Enum.ScaleType.Fit  -- 确保图片适应框架
+
+local PhotoCorner = Instance.new("UICorner")
+PhotoCorner.Parent = PhotoLabel
+PhotoCorner.CornerRadius = UDim.new(0, 10)
+
+local PhotoStroke = Instance.new("UIStroke")
+PhotoStroke.Parent = PhotoLabel
+PhotoStroke.Color = Color3.fromRGB(80, 80, 90)
+PhotoStroke.Thickness = 2
+
+-- 同意按钮
+AgreeButton.Parent = Frame
+AgreeButton.BackgroundColor3 = Color3.fromRGB(86, 164, 254)
+AgreeButton.Position = UDim2.new(0.548, 0, 0.83, 0)
+AgreeButton.Size = UDim2.new(0.4, 0, 0.1, 0)
+AgreeButton.AutoButtonColor = false
+AgreeButton.Text = "同意使用 😋"
+AgreeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+AgreeButton.Font = Enum.Font.GothamBold
+AgreeButton.TextSize = 18
+
+AgreeUICorner.Parent = AgreeButton
+AgreeUICorner.CornerRadius = UDim.new(0, 8)
+
+local AgreeStroke = Instance.new("UIStroke")
+AgreeStroke.Parent = AgreeButton
+AgreeStroke.Color = Color3.fromRGB(120, 180, 255)
+AgreeStroke.Thickness = 2
+
+-- 关闭按钮
+CloseButton.Parent = TitleBar
+CloseButton.BackgroundColor3 = Color3.fromRGB(220, 70, 70)
+CloseButton.Position = UDim2.new(0.94, 0, 0.15, 0)
+CloseButton.Size = UDim2.new(0.05, 0, 0.7, 0)
+CloseButton.AutoButtonColor = false
+CloseButton.Text = "×"
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.Font = Enum.Font.GothamBold
+CloseButton.TextSize = 20
+
+CloseUICorner.Parent = CloseButton
+CloseUICorner.CornerRadius = UDim.new(0, 6)
+
+-- 滚动框架
+ScrollingFrame.Parent = Frame
+ScrollingFrame.Position = UDim2.new(0.52, 0, 0.13, 0)
+ScrollingFrame.Size = UDim2.new(0.477, 0, 0.7, 0)
+ScrollingFrame.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+ScrollingFrame.BackgroundTransparency = 0
+ScrollingFrame.BorderSizePixel = 0
+ScrollingFrame.CanCanvasSize = UDim2.new(0, 0, 2, 0)
+ScrollingFrame.ScrollBarThickness = 5
+ScrollingFrame.ScrollBarImageColor3 = Color3.fromRGB(100, 100, 120)
+
+local ScrollCorner = Instance.new("UICorner")
+ScrollCorner.Parent = ScrollingFrame
+ScrollCorner.CornerRadius = UDim.new(0, 8)
+
+local ScrollStroke = Instance.new("UIStroke")
+ScrollStroke.Parent = ScrollingFrame
+ScrollStroke.Color = Color3.fromRGB(80, 80, 90)
+ScrollStroke.Thickness = 2
+
+-- 文本标签
+TextLabel.Parent = ScrollingFrame
+TextLabel.Size = UDim2.new(1, -20, 2, 0)
+TextLabel.Position = UDim2.new(0, 10, 0, 10)
+TextLabel.Text = [[
+欢迎使用闼鲨脚本 v2.0
+
+使用条款:
+1. 本脚本仅供学习交流使用
+2. 请勿用于破坏游戏体验
+3. 使用者需自行承担风险
+
+更新内容:
+- 全新UI设计
+- 性能优化
+- 更多功能即将推出
+- 新增俄亥俄脚本功能
+- 新增伐木大亨功能
+- 新增破坏者谜团2功能
+]]
+TextLabel.TextSize = 16
+TextLabel.TextWrapped = true
+TextLabel.Font = Enum.Font.Gotham
+TextLabel.TextColor3 = Color3.fromRGB(220, 220, 220)
+TextLabel.BackgroundTransparency = 1
+TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+TextLabel.TextYAlignment = Enum.TextYAlignment.Top
+
+-- 文本框
+TextBox.Parent = Frame
+TextBox.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+TextBox.Position = UDim2.new(0.6, 0, 0.05, 0)
+TextBox.Size = UDim2.new(0.3, 0, 0.05, 0)
+TextBox.Font = Enum.Font.Gotham
+TextBox.PlaceholderText = "输入公告内容..."
+TextBox.Text = "闼鲨脚本已更新!"
+TextBox.TextColor3 = Color3.fromRGB(220, 220, 220)
+TextBox.TextSize = 16
+TextBox.ClearTextOnFocus = false
+
+local TextBoxUICorner = Instance.new("UICorner")
+TextBoxUICorner.Parent = TextBox
+TextBoxUICorner.CornerRadius = UDim.new(0, 6)
+
+local TextBoxUIStroke = Instance.new("UIStroke")
+TextBoxUIStroke.Parent = TextBox
+TextBoxUIStroke.Thickness = 1
+TextBoxUIStroke.Color = Color3.fromRGB(80, 80, 90)
+
+-- 按钮交互效果
+local function buttonHoverEffect(button, hoverColor, originalColor)
+    button.MouseEnter:Connect(function()
+        game:GetService("TweenService"):Create(
+            button,
+            TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+            {BackgroundColor3 = hoverColor}
+        ):Play()
+    end)
+    
+    button.MouseLeave:Connect(function()
+        game:GetService("TweenService"):Create(
+            button,
+            TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+            {BackgroundColor3 = originalColor}
+        ):Play()
+    end)
+    
+    button.MouseButton1Down:Connect(function()
+        game:GetService("TweenService"):Create(
+            button,
+            TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+            {BackgroundColor3 = Color3.fromRGB(
+                originalColor.R * 0.7,
+                originalColor.G * 0.7,
+                originalColor.B * 0.7
+            )}
+        ):Play()
+    end)
+    
+    button.MouseButton1Up:Connect(function()
+        game:GetService("TweenService"):Create(
+            button,
+            TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.Out),
+            {BackgroundColor3 = hoverColor}
+        ):Play()
+    end)
+end
+
+-- 应用按钮效果
+buttonHoverEffect(AgreeButton, Color3.fromRGB(96, 174, 264), Color3.fromRGB(86, 164, 254))
+buttonHoverEffect(CloseButton, Color3.fromRGB(240, 90, 90), Color3.fromRGB(220, 70, 70))
+
+-- 按钮功能
+CloseButton.MouseButton1Click:Connect(function()
+    Gui:Destroy()
+end)
+
+-- 俄亥俄脚本变量
+local ItemFarm
+local ItemFarmFunc
+local AutoRobBank
+local AutoRobBankFunc
+
+-- 伐木大亨变量
+local bai = {
+    axedupe = false,
+    soltnumber = "1",
+    waterwalk = false,
+    awaysday = false,
+    awaysdnight = false,
+    nofog = false,
+    axeflying = false,
+    playernamedied = "",
+    tptree = "",
+    moneyaoumt = 1,
+    moneytoplayername = "",
+    donationRecipient = tostring(game.Players.LocalPlayer),
+    autodropae = false,
+    farAxeEquip = nil,
+    cuttreeselect = "Generic",
+    autofarm = false,
+    PlankToBlueprint = nil,
+    plankModel = nil,
+    blueprintModel = nil,
+    saymege = "",
+    autosay = false,
+    saymount = 1,
+    sayfast = false,
+    autofarm1 = false,
+    bringamount = 1,
+    bringtree = false,
+    dxmz = "",
+    color = 0,
+    0,
+    0,
+    zlwjia = "",
+    mtwjia = nil,
+    zix = 1,
+    zlz = 3,
+    axeFling = nil,
+    itemtoopen = "",
+    openItem = nil,
+    car = nil,
+    load = false,
+    autobuyamount = 1,
+    autopick = false,
+    loaddupeaxewaittime = 3.1,
+    walkspeed = 16,
+    JumpPower = 50,
+    pickupaxeamount = 1,
+    whthmose = false,
+    itemset = nil,
+    LoneCaveAxeDetection = nil,
+    cuttree = false,
+    LoneCaveCharacterAddedDetection = nil,
+    LoneCaveDeathDetection = nil,
+    lovecavecutcframe = nil,
+    lovecavepast = nil,
+    zlmt = nil,
+    shuzhe = false,
+    modwood = false,
+    tchonmt = nil,
+    cskais = false,
+    dledetree = false,
+    delereeset = nil,
+    treecutset = nil,
+    autobuyset = nil,
+    wood = 7,
+    cswjia = nil,
+    boxOpenConnection = nil,
+    autobuystop = false,
+    dropdown = {},
+    autocsdx = nil,
+    kuangxiu = nil,
+    xzemuban = false,
+    daiwp = false,
+    stopcar = false
+}
+
+AgreeButton.MouseButton1Click:Connect(function()
+    Gui:Destroy()
+    runScript()
+    
+    -- 创建FPS显示
+    local LBLG = Instance.new("ScreenGui")
+    LBLG.Name = "LBLG"
+    LBLG.Parent = game.CoreGui
+    LBLG.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    LBLG.Enabled = true
+    
+    local LBL = Instance.new("TextLabel")
+    LBL.Name = "LBL"
+    LBL.Parent = LBLG
+    LBL.BackgroundColor3 = Color3.fromRGB(30, 30, 40)
+    LBL.BackgroundTransparency = 0.7
+    LBL.BorderSizePixel = 0
+    LBL.Position = UDim2.new(0.75, 0, 0.01, 0)
+    LBL.Size = UDim2.new(0, 150, 0, 35)
+    LBL.Font = Enum.Font.GothamSemibold
+    LBL.Text = "闼鲨:加载中..."
+    LBL.TextColor3 = Color3.fromRGB(220, 220, 220)
+    LBL.TextSize = 14
+    LBL.TextWrapped = true
+    LBL.Visible = true
+    
+    local LBLCorner = Instance.new("UICorner")
+    LBLCorner.Parent = LBL
+    LBLCorner.CornerRadius = UDim.new(0, 6)
+    
+    local FpsLabel = LBL
+    local Heartbeat = game:GetService("RunService").Heartbeat
+    local LastIteration, Start
+    local FrameUpdateTable = {}
+    
+    local function HeartbeatUpdate()
+        LastIteration = tick()
+        for Index = #FrameUpdateTable, 1, -1 do
+            FrameUpdateTable[Index + 1] = (FrameUpdateTable[Index] >= LastIteration - 1) and FrameUpdateTable[Index] or nil
+        end
+        FrameUpdateTable[1] = LastIteration
+        local CurrentFPS = (tick() - Start >= 1 and #FrameUpdateTable) or (#FrameUpdateTable / (tick() - Start))
+        CurrentFPS = CurrentFPS - CurrentFPS % 1
+        FpsLabel.Text = ("闼鲨:"..os.date("%H").."时"..os.date("%M").."分"..os.date("%S"))
+    end
+    
+    Start = tick()
+    Heartbeat:Connect(HeartbeatUpdate)
+    
+    -- 显示俄亥俄脚本通知
+    local NotificationHolder = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Module.Lua"))() 
+    local Notification = loadstring(game:HttpGet("https://raw.githubusercontent.com/BocusLuke/UI/main/STX/Client.Lua"))() 
+
+    wait(1) 
+    Notification:Notify( 
+        {Title = "闼鲨", Description = "正在加载"}, 
+        {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"}, 
+        {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(255, 84, 84)} 
+    ) 
+    wait(2) 
+    Notification:Notify( 
+        {Title = "闼鲨", Description = "准备好了！"}, 
+        {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 5, Type = "image"}, 
+        {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(255, 84, 84)} 
+    )
+    wait(0.2)
+    Notification:Notify( 
+        {Title = "闼鲨", Description = "支持作者闼鲨和小天"}, 
+        {OutlineColor = Color3.fromRGB(80, 80, 80),Time = 10, Type = "image"}, 
+        {Image = "http://www.roblox.com/asset/?id=4483345998", ImageColor = Color3.fromRGB(255, 84, 84)} 
+    )
+    
+    -- 加载OrionLib
+    local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/v9Pdp6kx"))()
+    local Window = OrionLib:MakeWindow({
+        Name = "闼鲨脚本", 
+        HidePremium = false, 
+        SaveConfig = true,
+        IntroText = "闼鲨脚本已加载成功!",
+        ConfigFolder = "TaShaScriptConfig"
+    })
+    
+    -- 创建功能标签页
+    local MainTab = Window:MakeTab({
+        Name = "主要功能",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+    
+    -- 添加电脑键盘按钮
+    MainTab:AddButton({
+        Name = "电脑键盘",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt", true))()
+        end    
+    })
+    
+    -- 可以继续添加更多按钮...
+    MainTab:AddButton({
+        Name = "示例功能",
+        Callback = function()
+            print("示例功能已激活!")
+        end    
+    })
+    
+    -- 创建俄亥俄脚本标签页
+    local OhioTab = Window:MakeTab({
+        Name = "俄亥俄脚本",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+    
+    -- 俄亥俄脚本功能
+    OhioTab:AddParagraph("俄亥俄脚本", "由猫王和小天开发的俄亥俄州功能")
+    
+    OhioTab:AddToggle({
+        Name = "收集物品现金",
+        Default = false,
+        Callback = function(Value)
+            ItemFarm = Value
+            if ItemFarm then
+                pcall(function()
+                    ItemFarmFunc()
+                end)
+            end
+        end    
+    })
+    
+    OhioTab:AddToggle({
+        Name = "自动抢银行",
+        Default = false,
+        Callback = function(Value)
+            AutoRobBank = Value
+            if AutoRobBank then
+                pcall(function()
+                    AutoRobBankFunc()
+                end)
+            end
+        end    
+    })
+    
+    -- 创建伐木大亨标签页
+    local LumberTab = Window:MakeTab({
+        Name = "伐木大亨",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+    
+    -- 伐木大亨功能
+    LumberTab:AddParagraph("伐木大亨功能", "专为伐木大亨游戏设计的辅助功能")
+    
+    LumberTab:AddToggle({
+        Name = "自动砍树",
+        Default = false,
+        Callback = function(Value)
+            bai.autofarm = Value
+            if bai.autofarm then
+                startAutoFarm()
+            end
+        end    
+    })
+    
+    LumberTab:AddToggle({
+        Name = "自动出售木材",
+        Default = false,
+        Callback = function(Value)
+            bai.autosell = Value
+            if bai.autosell then
+                startAutoSell()
+            end
+        end    
+    })
+    
+    LumberTab:AddToggle({
+        Name = "水上行走",
+        Default = false,
+        Callback = function(Value)
+            bai.waterwalk = Value
+            if bai.waterwalk then
+                enableWaterWalk()
+            else
+                disableWaterWalk()
+            end
+        end    
+    })
+    
+    LumberTab:AddButton({
+        Name = "传送到最高级树",
+        Callback = function()
+            teleportToBestTree()
+        end    
+    })
+    
+    LumberTab:AddButton({
+        Name = "获取最佳斧头",
+        Callback = function()
+            getBestAxe()
+        end    
+    })
+    
+    LumberTab:AddSlider({
+        Name = "行走速度",
+        Min = 16,
+        Max = 100,
+        Default = 16,
+        Color = Color3.fromRGB(86, 164, 254),
+        Increment = 1,
+        ValueName = "速度",
+        Callback = function(Value)
+            bai.walkspeed = Value
+            setWalkSpeed(Value)
+        end    
+    })
+    
+    LumberTab:AddSlider({
+        Name = "跳跃高度",
+        Min = 50,
+        Max = 200,
+        Default = 50,
+        Color = Color3.fromRGB(86, 164, 254),
+        Increment = 1,
+        ValueName = "高度",
+        Callback = function(Value)
+            bai.JumpPower = Value
+            setJumpPower(Value)
+        end    
+    })
+    
+    -- 创建破坏者谜团2标签页
+    local MM2Tab = Window:MakeTab({
+        Name = "破坏者谜团2",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+    
+    -- 添加破坏者谜团2功能
+    MM2Tab:AddParagraph("破坏者谜团2功能", "专为Murder Mystery 2游戏设计的辅助功能")
+    
+    MM2Tab:AddButton({
+        Name = "加载破坏者谜团2脚本",
+        Callback = function()
+            loadMM2Script()
+        end    
+    })
+    
+    MM2Tab:AddToggle({
+        Name = "破坏者光标",
+        Default = false,
+        Callback = function(Value)
+            if Value then
+                enableMurdererESP()
+            else
+                disableMurdererESP()
+            end
+        end    
+    })
+    
+    MM2Tab:AddToggle({
+        Name = "警长光标",
+        Default = false,
+        Callback = function(Value)
+            if Value then
+                enableSheriffESP()
+            else
+                disableSheriffESP()
+            end
+        end    
+    })
+    
+    MM2Tab:AddToggle({
+        Name = "显示名称",
+        Default = false,
+        Callback = function(Value)
+            if Value then
+                enableNameESP()
+            else
+                disableNameESP()
+            end
+        end    
+    })
+    
+    MM2Tab:AddToggle({
+        Name = "自动捡枪",
+        Default = false,
+        Callback = function(Value)
+            if Value then
+                enableGunGrabber()
+            else
+                disableGunGrabber()
+            end
+        end    
+    })
+    
+    MM2Tab:AddButton({
+        Name = "传送到警长",
+        Callback = function()
+            teleportToSheriff()
+        end    
+    })
+    
+    MM2Tab:AddButton({
+        Name = "传送到破坏者",
+        Callback = function()
+            teleportToMurderer()
+        end    
+    })
+    
+    MM2Tab:AddButton({
+        Name = "杀死全部（破坏者）",
+        Callback = function()
+            killAllAsMurderer()
+        end    
+    })
+    
+    -- 俄亥俄脚本功能实现
+    function GetItems()
+       local cache = {}
+       
+       for i,v in pairs(game:GetService("Workspace").Game.Entities.CashBundle:GetChildren()) do
+           table.insert(cache,v)
+       end
+       
+       for i,v in pairs(game:GetService("Workspace").Game.Entities.ItemPickup:GetChildren()) do
+           table.insert(cache,v)
+       end
+       
+       return cache
+    end
+
+    function Collect(item)
+        if item:FindFirstChildOfClass("ClickDetector") then
+            fireclickdetector(item:FindFirstChildOfClass("ClickDetector"))
+        elseif item:FindFirstChildOfClass("Part") then
+            local maincrap = item:FindFirstChildOfClass("Part")
+            fireclickdetector(maincrap:FindFirstChildOfClass("ClickDetector"))
+        end
+    end
+
+    ItemFarmFunc = function()
+        while ItemFarm and task.wait() do
+            local allitems = GetItems()
+            
+            for i,v in pairs(allitems) do
+                if ItemFarm == false then break end
+                pcall(function()
+                    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v:FindFirstChildOfClass("Part").CFrame
+                    task.wait(0.5)
+                    Collect(v)
+                    task.wait(0.5)
+                end)
+                continue
+            end
+        end
+    end
+
+    AutoRobBankFunc = function()
+        while AutoRobBank and task.wait() do
+            local bankthing = game:GetService("Workspace").BankRobbery.BankCash
+            if #bankthing.Cash:GetChildren() > 0 then
+               game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = bankthing.Main.CFrame
+               task.wait()
+               fireproximityprompt(game:GetService("Workspace").BankRobbery.BankCash.Main.Attachment.ProximityPrompt)
+            end
+        end
+    end
+    
+    -- 伐木大亨功能实现
+    function startAutoFarm()
+        spawn(function()
+            while bai.autofarm and task.wait() do
+                -- 自动砍树逻辑
+                local bestTree = findBestTree()
+                if bestTree then
+                    teleportToTree(bestTree)
+                    chopTree(bestTree)
+                end
+            end
+        end)
+    end
+    
+    function startAutoSell()
+        spawn(function()
+            while bai.autosell and task.wait() do
+                -- 自动出售逻辑
+                sellWood()
+            end
+        end)
+    end
+    
+    function enableWaterWalk()
+        -- 水上行走逻辑
+        local character = game.Players.LocalPlayer.Character
+        if character then
+            local humanoid = character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown, false)
+                humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll, false)
+            end
+        end
+    end
+    
+    function disableWaterWalk()
+        -- 禁用水上行走逻辑
+        local character = game.Players.LocalPlayer.Character
+        if character then
+            local humanoid = character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown, true)
+                humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll, true)
+            end
+        end
+    end
+    
+    function teleportToBestTree()
+        -- 传送到最佳树木逻辑
+        local bestTree = findBestTree()
+        if bestTree then
+            teleportToTree(bestTree)
+        end
+    end
+    
+    function getBestAxe()
+        -- 获取最佳斧头逻辑
+        local bestAxe = findBestAxe()
+        if bestAxe then
+            equipAxe(bestAxe)
+        end
+    end
+    
+    function setWalkSpeed(speed)
+        -- 设置行走速度逻辑
+        local character = game.Players.LocalPlayer.Character
+        if character then
+            local humanoid = character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid.WalkSpeed = speed
+            end
+结束
+    end
+    
+    function setJumpPower(power)
+        -- 设置跳跃高度逻辑
+        local character = game.Players.LocalPlayer.Character
+        if character then
+            local humanoid = character:FindFirstChildOfClass("Humanoid")
+            if humanoid then
+                humanoid.JumpPower = power
+            end
+结束
+    end
+    
+    -- 破坏者谜团2功能实现
+    function loadMM2Script()
+        -- 加载完整的MM2脚本
+        local success, err = pcall(function()
+            -- 这里放置完整的MM2脚本代码
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/YourUsername/YourRepository/main/mm2_script.lua", true))()
+        end)
+        
+        if not success then
+            OrionLib:MakeNotification({
+                Name = "错误",
+                Content = "加载破坏者谜团2脚本时出错: " .. tostring(err),
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+        else
+            OrionLib:MakeNotification({
+                Name = "成功",
+                Content = "破坏者谜团2脚本已加载!",
+                Image = "rbxassetid://4483345998",
+                Time = 5
+            })
+结束
+    end
+    
+    function enableMurdererESP()
+        -- 实现破坏者ESP功能
+        OrionLib:MakeNotification({
+            Name = "提示",
+            Content = "破坏者光标功能已启用",
+            Image = "rbxassetid://4483345998",
+            Time = 3
+        })
+    end
+    
+    function disableMurdererESP()
+        -- 禁用破坏者ESP功能
+        OrionLib:MakeNotification({
+            Name = "提示",
+            Content = "破坏者光标功能已禁用",
+            Image = "rbxassetid://4483345998",
+            Time = 3
+        })
+    end
+    
+    function enableSheriffESP()
+        -- 实现警长ESP功能
+        OrionLib:MakeNotification({
+            Name = "提示",
+            Content = "警长光标功能已启用",
+            Image = "rbxassetid://4483345998",
+            Time = 3
+        })
+    end
+    
+    function disableSheriffESP()
+        -- 禁用警长ESP功能
+OrionLib:MakeNotification({
+name="提示"，
+            Content = "警长光标功能已禁用",
+image="rbxassetid://4483345998"，
+时间=3
+        })
+结束
+    
+    function enableNameESP()
+        -- 实现名称ESP功能
+OrionLib:MakeNotification({
+name="提示"，
+            Content = "显示名称功能已启用",
+image="rbxassetid://4483345998"，
+时间=3
+        })
+结束
+    
+    function disableNameESP()
+        -- 禁用名称ESP功能
+OrionLib:MakeNotification({
+name="提示"，
+            Content = "显示名称功能已禁用",
+            Image = "rbxassetid://4483345998",
+            Time = 3
+        })
+    end
+    
+功能enableGunGrabber()
+-- 实现自动捡枪功能
+        OrionLib:MakeNotification({
+            Name = "提示",
+内容="自动捡枪功能已启用"，
+image="rbxassetid://4483345998"，
+时间=3
+        })
+结束
+    
+功能disableGunGrabber()
+-- 禁用自动捡枪功能
+OrionLib:MakeNotification({
+姓名="提示"，
+内容="自动捡枪功能已禁用"，
+image="rbxassetid://4483345998"，
+时间=3
+        })
+结束
+    
+函数teleportToSheriff()
+-- 传送到警长功能
+OrionLib:MakeNotification({
+姓名="提示"，
+内容="正在传送到警长..."，
+image="rbxassetid://4483345998"，
+时间=3
+        })
+结束
+    
+功能设置JumpPower(功率)
+-- 设置跳跃高度逻辑
+本地角色=game.Players.LocalPlayer.Character
+如果字符，则
+局部humanoid=字符：FindFirstChildOfClass("Humanoid")
+如果是人形那么
+humanoid.JumpPower=power
+结束
+结束
+    
+函数killAllAsMurderer()
+-- 破坏者谜团2功能实现
+函数loadMM2Script()
+--加载完整的MM2脚本
+本地成功，err=pcall(函数()
+-- 这里放置完整的MM2脚本代码
+loadstring(游戏：HttpGet("https://raw.githubusercontent.com/YourUsername/YourRepository/main/mm2_script.lua"，true))()
+结束)
+结束
+如果不成功那么
+OrionLib:MakeNotification({
+name="错误"，
+content="加载破坏者谜团2脚本时出错："..toString(err)，
+image="rbxassetid://4483345998"，
+时间=5
+Color3.fromRGB(255，0，0)
+其他
+OrionLib:MakeNotification({
+name="成功"，
+content="破坏者谜团2脚本已加载！"，
+image="rbxassetid://4483345998"，
+时间=5
+游戏：获取服务(“工作空间”)。商店。WoodRUs.部分。PREMIUSELECTION.SERFACEGUI.TextLabel.文本=
+结束
+游戏：获取服务(“工作空间”)。商店。WoodRUs.部分。PREMIUSELECTION.SERFACEGUI.TextLabel.TextColor3=
+Color3.fromRGB(255，0，0)
+函数enableMurdererESP()
+--实现破坏者ESP功能
+游戏：GetService(“工作空间”)。商店。WoodRUs.部分。PREMIUSELECTION.SERFACEGUI.TextLabel.TextColor3=
+Color3.fromRGB(255，0，0)
+content="破坏者光标功能已启用"，
+游戏：获取服务(“工作空间”)。商店。WoodRUs.部分。PREMIUSELECTION.SERFACEGUI.TextLabel.文本="肥柑惨败"
+游戏：获取服务(“工作空间”)。商店。WoodRUs.部分。PREMIUSELECTION.SERFACEGUI.TextLabel.TextColor3=
+Color3.fromRGB(255，0，0)
+等待(1)
+结束
+结束)
+--禁用破坏者ESP功能
+游戏：GetService(“工作空间”)。商店。WoodRUs.部分。OPEN24HOURS.SurfaceGui.TextLabel.文本="作者：阿巴巴"；
+游戏：GetService(“工作空间”)。商店。WoodRUs.部分。OPEN24HOURS.SurfaceGui.TextLabel.TextColor3=
+Color3.fromRGB(255，0，0)
+游戏：获取服务(“工作空间”)。商店。WoodRUs.部分。塞尔伍德。SurfaceGui.TextLabel。文本="作者：修狗"；
+游戏：获取服务(“工作空间”)。商店。WoodRUs.部分。Sellwood.SurfaceGui.TextLabel.TextColor3=Color3.FromRGB(255，0，0)
+游戏：GetService(“工作空间”)。商店。WoodRUs.部分。WOODDROPOFF、SurfaceGui、TextLabel。文本="感谢使用白"；
+游戏：GetService(“工作空间”)。商店。WoodRUs.部分。WOODDROPOFF、SurfaceGui、TextLabel.TextColor3=
+Color3.fromRGB(255，0，0)
+函数enableSheriffESP()
+-- 发送初始通知
+本地CoreGui=游戏：GetService("StarterGui")
+CoreGui:SetCore("SendNotification"，{
+标题="玩家确认"，
+文本="玩家："..game.Players.LocalPlayer.Name.."，祝你玩的开心，嘿嘿"，
+持续时间=10，
+    })
+结束)
+
+函数RunScript()
+打印("闼鲨脚本已启动")
+print("公告内容："..TextBox.Text)
+结束
+
+image="rbxassetid://4483345998"，
+Frame.Position=UDim2.new(0.15，0，-1，0)
+Frame.Visible=true
+
+游戏：GetService("TweenService")：创建(
+框架，
+TweenInfo.new(0.5，枚举.EasingStyle.Back，枚举.EasingDirection.Out)，
+{位置=UDim2.new(0.15，0，0.075，0)}
+)：播放()
